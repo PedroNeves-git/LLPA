@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@400;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,32 +7,45 @@
 }
 
 body {
-    /* #363532, rgb(88, 111, 112) */
+    font-family: 'Roboto', sans-serif;
     align-items: center;
     display: flex;
     flex-direction: column;
-    font-family: 'Work Sans', sans-serif;
     min-height: 100vh;
     padding-top: 3%;
+    color: #e4e4e4;
 }
 
 /* Body light or darker themes */
 .standard {
-    background-image: linear-gradient(100deg, #575656, #062e3f);
-    color: #ffdfdb;
+    background-image: linear-gradient(100deg, #5c5b5b, #093548);
+    color: #f0ded8;
     transition: 0.3s linear;
     overflow: hidden;
 }
 
 .light {
-    background-image: linear-gradient(100deg, #d4f1ff, #ffffff);
-    color: #1a150e;
+    background-image: linear-gradient(100deg, #e8f5ff, #ffffff);
+    color: #2d2018;
     transition: 0.3s linear;
 }
 
 .darker {
-    background-image: linear-gradient(100deg, #001214, #001f29);
-    color: white;
+    background-image: linear-gradient(100deg, #021b1f, #013545);
+    color: #e0e0e0;
+    transition: 0.3s linear;
+}
+
+/* New Themes */
+.sunset {
+    background-image: linear-gradient(100deg, #ff6b6b, #ff9f68);
+    color: #ffe66d;
+    transition: 0.3s linear;
+}
+
+.ocean {
+    background-image: linear-gradient(100deg, #0077b6, #90e0ef);
+    color: #caf0f8;
     transition: 0.3s linear;
 }
 
@@ -41,11 +56,12 @@ body {
 }
 
 #header {
+    font-family: 'Poppins', sans-serif;
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: 4rem;
+    font-size: 3rem; /* Reduzido */
     min-height: 25vh;
     width: 100%;
 }
@@ -60,15 +76,16 @@ body {
 }
 
 .theme-selector {
+    background: #ff6f61; /* Nova cor */
     border: 1px solid #d1dae3;
     border-radius: 100%;
-    height: 35px;
+    height: 30px; /* Reduzido */
+    width: 30px; /* Reduzido */
     margin: 0 8px;
-    transition: tranform 150ms ease-in-out, box-shadow 200ms ease-in-out;
-    width: 35px;
+    transition: transform 150ms ease-in-out, box-shadow 200ms ease-in-out;
 }
 
-.theme-selector:hover { 
+.theme-selector:hover {
     box-shadow: white 0 0 8px;
     cursor: pointer;
 }
@@ -78,65 +95,64 @@ body {
 }
 
 .standard-theme {
-    background-image: linear-gradient(100deg, #575656, #062e3f);
+    background-image: linear-gradient(100deg, #5c5b5b, #093548);
 }
 
 .light-theme {
-    background-image: linear-gradient(100deg, #d4f1ff, #ffffff);
+    background-image: linear-gradient(100deg, #e8f5ff, #ffffff);
 }
 
 .darker-theme {
-    background-image: linear-gradient(100deg, #140000, #001f29);
+    background-image: linear-gradient(100deg, #160000, #013545);
+}
+
+.sunset-theme {
+    background-image: linear-gradient(100deg, #ff6b6b, #ff9f68);
+}
+
+.ocean-theme {
+    background-image: linear-gradient(100deg, #0077b6, #90e0ef);
 }
 
 /* Animation */
 #title {
     border-right: solid 3px rgba(0, 0, 0, 0.75);
     white-space: pre;
-    overflow: hidden;     
-    letter-spacing: 0.20rem;
-    margin-top: 50px;
-    margin-bottom: 20px;
-    max-width: 480px;
+    overflow: hidden;
+    letter-spacing: 0.15rem; /* Reduzido */
+    margin-top: 40px;
+    margin-bottom: 15px;
+    max-width: 450px; /* Reduzido */
     justify-content: center;
     display: flex;
-  }
-  
-  /* Animation */
-#title {
     animation: animated-text 1s steps(20,end) 0.2s 1 normal both,
         animated-cursor 750ms steps(10,end) infinite;
-    justify-content: center;
-    display: flex;
-  }
+}
 
 #title.darker-title {
     animation: animated-text 1s steps(5,end) 0.2s 1 normal both, darker-animated-cursor 750ms steps(5,end) infinite;
-    justify-content: center;
 }
-  
-  /* text animation */
-  
-  @keyframes animated-text{
-    from{width: 0%;}
-    to{width: 480px;}
-  }
-  
-  /* cursor animations */
-  
-  @keyframes animated-cursor{
-    from{border-right-color: rgba(0, 0, 0, 0.75);}
-    to{border-right-color: transparent;}
-  }
 
-  @keyframes darker-animated-cursor {
-    from{border-right-color: #01394c;}
-    to{border-right-color: transparent;}
-  }
+/* text animation */
+@keyframes animated-text {
+    from { width: 0%; }
+    to { width: 450px; }
+}
+
+/* cursor animations */
+@keyframes animated-cursor {
+    from { border-right-color: rgba(0, 0, 0, 0.75); }
+    to { border-right-color: transparent; }
+}
+
+@keyframes darker-animated-cursor {
+    from { border-right-color: #01394c; }
+    to { border-right-color: transparent; }
+}
 
 form {
     display: flex;
-    font-size: 1.7rem;
+    font-size: 1.5rem; /* Reduzido */
     justify-content: center;
     margin: 15px 0;
     padding: 0.8rem;
@@ -144,13 +160,12 @@ form {
 }
 
 form input {
-    padding: 10px;
-    font-size: 17px;
+    padding: 8px; /* Reduzido */
+    font-size: 15px; /* Reduzido */
     border: none;
     outline: none;
-    /* border-radius: 15; */
-    border-top-left-radius: 17px;
-    border-bottom-left-radius: 17px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
     max-width: 500px;
     transition: background-color 200ms ease-in-out;
     width: 100%;
@@ -158,29 +173,38 @@ form input {
 
 /* Input themes */
 form input.standard-input {
-    background-color: #181a1a;
-    color: rgb(247, 226, 223);
+    background-color: #2b2b2b;
+    color: #f1dcdc;
 }
 
-
 form input.light-input {
-    background-color: #AEB1B4;
-    color: #1a150e;
+    background-color: #c8ccd0;
+    color: #2d2018;
 }
 
 form input.light-input::placeholder {
-    color: #1a150e;
+    color: #2d2018;
     opacity: 0.7;
 }
 
 form input.darker-input {
-    background-color: #01394c;
-    color: white;
+    background-color: #033f57;
+    color: #e4e4e4;
 }
 
 form input.darker-input::placeholder {
-    color: white;
+    color: #e4e4e4;
     opacity: 0.7;
+}
+
+form input.sunset-input {
+    background-color: #ff6b6b;
+    color: #ffe66d;
+}
+
+form input.ocean-input {
+    background-color: #0077b6;
+    color: #caf0f8;
 }
 
 form input:hover {
@@ -199,9 +223,17 @@ form input.darker-input:hover {
     background-color: #013141;
 }
 
+form input.sunset-input:hover {
+    background-color: #ff4747;
+}
+
+form input.ocean-input:hover {
+    background-color: #00618b;
+}
+
 button {
     border: none;
-    outline: none; 
+    outline: none;
     transition: box-shadow 200ms ease, background-color 200ms ease-in-out;
 }
 
@@ -211,8 +243,8 @@ button:hover {
 
 /* Button themes */
 button.standard-button {
-    background-color: rgb(247, 226, 223);
-    color: rgb(0, 0, 0);
+    background-color: #f1dcdc;
+    color: #2d2018;
 }
 
 button.standard-button:hover {
@@ -221,8 +253,8 @@ button.standard-button:hover {
 }
 
 button.light-button {
-    background-color: white;
-    color: #1a150e;
+    background-color: #f8f8f8;
+    color: #2d2018;
 }
 
 button.light-button:hover {
@@ -230,20 +262,38 @@ button.light-button:hover {
 }
 
 button.darker-button {
-    background-color: #002837;
-    color: white;
+    background-color: #013a52;
+    color: #e0e0e0;
 }
 
 button.darker-button:hover {
     background-color: #001f29;
 }
 
+button.sunset-button {
+    background-color: #ff6b6b;
+    color: #ffe66d;
+}
+
+button.sunset-button:hover {
+    background-color: #ff4747;
+}
+
+button.ocean-button {
+    background-color: #0077b6;
+    color: #caf0f8;
+}
+
+button.ocean-button:hover {
+    background-color: #00618b;
+}
+
 form button {
-    padding: 10px;
-    font-size: 17px;
+    padding: 8px; /* Reduzido */
+    font-size: 15px; /* Reduzido */
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    min-width: 100px;
+    min-width: 90px; /* Reduzido */
 }
 
 #myUnOrdList {
@@ -255,16 +305,12 @@ form button {
 
 .todo-list {
     min-width: 25%;
-
-    /* To remove the bullets of unordered list */
     list-style: none;
 }
 
 .todo {
     margin: 1rem;
-    /* background: rgb(247, 226, 223); */
-    /* color: black; */
-    font-size: 19px;
+    font-size: 17px; /* Reduzido */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -275,34 +321,43 @@ form button {
 
 /* Items themes */
 .standard-todo {
-    background-color: rgb(26, 27, 27);
+    background-color: #303232;
+    color: #e4e4e4;
 }
 
 .light-todo {
-    background-color:#AEB1B4;
+    background-color: #c8ccd0;
+    color: #2d2018;
 }
 
 .darker-todo {
-    background-color: #01394c;
+    background-color: #033f57;
+    color: #e0e0e0;
 }
 
-.todo li{
-    padding: 7px;
-    /* word-wrap: break-word; */
-    /* flex-wrap: wrap; */
-    font-size: 20px;
-    flex: 1; /* To push the trash and the check button to the right */
-    border-radius: 30px;
+.sunset-todo {
+    background-color: #ff9f68;
+    color: #ffe66d;
+}
 
-    /* wraps the links */
+.ocean-todo {
+    background-color: #90e0ef;
+    color: #caf0f8;
+}
+
+.todo li {
+    padding: 5px; /* Reduzido */
+    font-size: 18px; /* Reduzido */
+    flex: 1;
+    border-radius: 30px;
     overflow-wrap: anywhere;
 }
 
 .check-btn, .delete-btn {
-    font-size: 19px;
+    font-size: 17px; /* Reduzido */
     cursor: pointer;
-    width: 2em;
-    height: 2em;
+    width: 1.8em; /* Reduzido */
+    height: 1.8em; /* Reduzido */
     border-radius: 80%;
     margin: 0 5px;
 }
@@ -311,10 +366,9 @@ form button {
     padding: 0rem 0.5rem;
 }
 
-.fa-trash, .fa-check { 
+.fa-trash, .fa-check {
     pointer-events: none;
 }
-
 
 .completed {
     transition: 0.2s;
@@ -338,51 +392,46 @@ form button {
 
 @media only screen and (max-width: 800px) {
     #header {
-        font-size: 2rem;
+        font-size: 1.8rem; /* Reduzido */
     }
 
     #title {
-        animation: 
+        animation:
             animated-text 3s steps(16,end) 0.5s 1 normal both,
             animated-cursor 750ms steps(16,end) infinite;
         margin-bottom: 10px;
         margin-top: 30px;
-        max-width: 330px;
-        justify-content: center;
-        display: flex;
+        max-width: 300px; /* Reduzido */
     }
 }
 
 @media only screen and (max-width: 400px) {
     #header {
-        font-size: 1.5rem;
+        font-size: 1.3rem; /* Reduzido */
     }
 
     #title {
-        animation: 
+        animation:
             animated-text 3.5s steps(16,end) 0.5s 1 normal both,
             animated-cursor 750ms steps(16,end) infinite;
-        max-width: 255px;
-        justify-content: center;
-        display: flex;
+        max-width: 220px; /* Reduzido */
     }
-}
 
-@media only screen and (max-width: 400px) {
     form {
         align-items: center;
         flex-direction: column;
     }
 
     form input {
-        border-radius: 17px;
+        border-radius: 15px;
     }
 
     form button {
         border-radius: 15px;
-        margin-top: 15px;
+        margin-top: 10px;
         width: 50%;
     }
+
     form > button.light-button {
         box-shadow: 0 0 5px lightgray;
     }

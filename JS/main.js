@@ -5,6 +5,8 @@ const toDoList = document.querySelector('.todo-list');
 const standardTheme = document.querySelector('.standard-theme');
 const lightTheme = document.querySelector('.light-theme');
 const darkerTheme = document.querySelector('.darker-theme');
+const oceanTheme = document.querySelector('.ocean-theme');
+const sunsetTheme = document.querySelector('.sunset-theme');
 
 // Event Listeners
 toDoBtn.addEventListener('click', addToDo);
@@ -13,7 +15,8 @@ document.addEventListener("DOMContentLoaded", getTodos);
 standardTheme.addEventListener('click', () => changeTheme('standard'));
 lightTheme.addEventListener('click', () => changeTheme('light'));
 darkerTheme.addEventListener('click', () => changeTheme('darker'));
-
+oceanTheme.addEventListener('click', () => changeTheme('ocean'))
+sunsetTheme.addEventListener('click', () => changeTheme('sunset'))
 // Check if one theme has been set previously and apply it (or std theme if not found):
 let savedTheme = localStorage.getItem('savedTheme');
 savedTheme === null ? changeTheme('standard') : changeTheme(savedTheme);
