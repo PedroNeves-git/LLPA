@@ -9,13 +9,25 @@ app.use(cors()); // Permitir CORS para todas as rotas
 app.use(express.json());
 
 // Conexão com o banco de dados MySQL
+// const db = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '1234',
+//     database: 'TODOLIST'
+// });
+
+// Conexão com o banco de dados usando credenciais diretas
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '1234',
-    database: 'TODOLIST'
+    host: 'todolist.cduewaimen75.us-east-1.rds.amazonaws.com',
+    user: 'admin',
+    password: 'Naruto2010',
+    database: 'TODOLIST',
+    port: 3306,
+    connectTimeout: 10000 // Ajuste o tempo de conexão se necessário
 });
 
+
+// Conexão
 db.connect((err) => {
     if (err) {
         console.log('Erro ao conectar no banco de dados:', err);
@@ -27,21 +39,22 @@ db.connect((err) => {
 // Rota para adicionar uma tarefa na tabela lista_tarefa
 app.post('/add-lista-tarefa', (req, res) => {
     const { titulo } = req.body;
+    console.log(req.body); // Verifique o conteúdo da requisição
 
     if (!titulo) {
         return res.status(400).send('Título da tarefa é obrigatório');
     }
 
-    const sql = 'INSERT INTO Lista_Tarefa (titulo) VALUES (?)';
+    const sql = 'INSERT INTO lista_tarefa (titulo) VALUES (?)';
     db.query(sql, [titulo], (err, result) => {
         if (err) {
             return res.status(500).send('Erro ao inserir a tarefa na lista_tarefa');
         }
-        // Retorna o ID gerado da lista_tarefa
         const listaTarefaId = result.insertId;
         res.status(200).json({ id: listaTarefaId, titulo });
     });
 });
+
 
 // Rota para obter dados de uma tarefa existente
 app.get('/tarefa/:id', (req, res) => {
@@ -71,25 +84,28 @@ app.get('/tarefa/:id', (req, res) => {
 
 // Rota para adicionar uma tarefa na tabela tarefa (com ID da lista_tarefa)
 app.post('/add-tarefa', (req, res) => {
-    const { id_lista_tarefa, titulo } = req.body;
+    const { titulo } = req.body;
 
-    if (!id_lista_tarefa || !titulo) {
-        return res.status(400).send('ID da lista_tarefa e título são obrigatórios');
+    if (!titulo) {
+        return res.status(400).send('Título é obrigatório');
     }
 
-    // Inserir dados na tabela tarefa usando id_lista_tarefa e titulo
-    const sql = 'INSERT INTO tarefa (id_lista_tarefa, titulo) VALUES (?, ?)';
-    db.query(sql, [id_lista_tarefa, titulo], (err, result) => {
+    const query = 'INSERT INTO lista_tarefa (titulo) VALUES (?)';
+    db.query(query, [titulo], (err, result) => {
         if (err) {
-            return res.status(500).send('Erro ao inserir a tarefa na tabela tarefa');
+            console.error('Erro ao inserir tarefa:', err);
+            return res.status(500).send('Erro ao inserir tarefa');
         }
-        res.status(200).send('Tarefa adicionada na tabela tarefa com sucesso!');
+
+        // Retornar o ID da nova tarefa
+        res.status(200).json({ id: result.insertId, titulo });
     });
 });
 
+
 // Rota para obter todas as tarefas
 app.get('/todos', (req, res) => {
-    const sql = 'SELECT * FROM Lista_Tarefa';
+    const sql = 'SELECT * FROM lista_tarefa';
     db.query(sql, (err, results) => {
         if (err) {
             return res.status(500).send('Erro ao buscar tarefas no banco de dados');
@@ -156,7 +172,7 @@ app.put('/atualizar-tarefa/:id', (req, res) => {
 // Rota para deletar uma tarefa
 app.delete('/deletar/:id', (req, res) => {
     const tarefaId = req.params.id; // Pega o ID da tarefa a partir da URL
-    const sqlDeleteTarefa = 'DELETE FROM Lista_Tarefa WHERE id = ?';
+    const sqlDeleteTarefa = 'DELETE FROM lista_tarefa WHERE id = ?';
     const sqlDeleteTarefaDetalhada = 'DELETE FROM tarefa WHERE id = ?';
 
     // Deletar da tabela Lista_Tarefa
