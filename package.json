@@ -6,6 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
+  "proxy": "http://34.227.143.202:3000/",
   "author": "",
   "license": "ISC",
   "description": "",
