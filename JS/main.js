@@ -34,7 +34,7 @@ function addToDo(event) {
     }
 
     // Envia os dados para o back-end
-    fetch('http://localhost:3000/add-tarefa', {
+    fetch('http://34.227.143.202:3000/add-tarefa', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -93,7 +93,7 @@ function showEditForm(id, titulo) {
     document.querySelector('#finalizadora').checked = false;
 
     // Buscar dados existentes, se houver
-    fetch(`http://localhost:3000/tarefa/${id}`)
+    fetch(`http://34.227.143.202:3000/tarefa/${id}`)
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -123,7 +123,7 @@ function showEditForm(id, titulo) {
         const prazo = document.querySelector('#prazo').value;
         const finalizadora = document.querySelector('#finalizadora').checked ? 1 : 0;
 
-        fetch(`http://localhost:3000/atualizar-tarefa/${id}`, {
+        fetch(`http://34.227.143.202:3000/atualizar-tarefa/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -156,7 +156,7 @@ function deletecheck(event) {
         removeLocalTodos(item.parentElement);
 
         // Enviar requisição DELETE para o backend
-        fetch(`http://localhost:3000/deletar/${tarefaId}`, {
+        fetch(`http://34.227.143.202:3000/deletar/${tarefaId}`, {
             method: 'DELETE',
         })
         .then(response => {
@@ -260,7 +260,7 @@ function showEditForm(id, titulo) {
         const finalizadora = document.querySelector('#finalizadora').checked ? 1 : 0;
 
         // Envia os dados de atualização para o servidor
-        fetch(`http://localhost:3000/atualizar-tarefa/${id}`, {
+        fetch(`http://34.227.143.202:3000/atualizar-tarefa/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -292,7 +292,7 @@ function savelocal(todo) {
 }
 
 function getTodos() {
-    fetch('http://localhost:3000/todos')
+    fetch('http://34.227.143.202:3000//todos')
         .then(response => response.json())
         .then(data => {
             data.forEach(todo => {
