@@ -292,7 +292,7 @@ function savelocal(todo) {
 }
 
 function getTodos() {
-    fetch('http://34.227.143.202:3000//todos')
+    fetch('http://34.227.143.202:3000/todos')
         .then(response => response.json())
         .then(data => {
             data.forEach(todo => {
